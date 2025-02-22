@@ -28,7 +28,7 @@ const Footer = () => {
           <MagicButton
             title="Let's get in touch"
             icon={<FaLocationArrow />}
-            position="right"s
+            position="right"
           />
         </a>
       </div>
