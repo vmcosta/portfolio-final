@@ -1,10 +1,17 @@
-import { useState } from "react";
+'use client';
+
+import { useState, useEffect } from "react";
 import { IoCopyOutline } from "react-icons/io5";
 import { motion } from "framer-motion";
+import Image from 'next/image';
 import { cn } from "@/lib/utils";
 import { BackgroundGradientAnimation } from "./GradientBg";
 import GridGlobe from "./GridGlobe";
 import MagicButton from "../MagicButton";
+import dynamic from 'next/dynamic';
+
+// Dynamically import lottie with no SSR
+const lottie = dynamic(() => import('lottie-web'), { ssr: false });
 
 export const BentoGrid = ({
   className,
@@ -85,7 +92,7 @@ export const BentoGridItem = ({
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
-    const text = "shashikiran7290@gmail.com";
+    const text = "vmcosta@me.com";
     navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -105,19 +112,23 @@ export const BentoGridItem = ({
       <div className={`${id === 6 && "flex justify-center"} h-full`}>
         <div className="w-full h-full absolute">
           {img && (
-            <img
+            <Image
               src={img}
               alt={img}
               className={cn(imgClassName, "object-cover object-center")}
+              width={1920}
+              height={1080}
             />
           )}
         </div>
         <div className={`absolute right-0 -bottom-5 ${id === 5 && "w-full opacity-80"}`}>
           {spareImg && (
-            <img
+            <Image
               src={spareImg}
               alt={spareImg}
               className="object-cover object-center w-full h-full"
+              width={1920}
+              height={1080}
             />
           )}
         </div>
