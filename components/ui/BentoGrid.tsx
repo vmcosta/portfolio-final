@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { IoCopyOutline } from "react-icons/io5";
 import { motion } from "framer-motion";
 import Image from 'next/image';
@@ -8,10 +8,10 @@ import { cn } from "@/lib/utils";
 import { BackgroundGradientAnimation } from "./GradientBg";
 import GridGlobe from "./GridGlobe";
 import MagicButton from "../MagicButton";
-import dynamic from 'next/dynamic';
+import LottieAnimation from "./LottieAnimation";
 
-// Dynamically import lottie with no SSR
-const lottie = dynamic(() => import('lottie-web'), { ssr: false });
+const leftLists = ["ReactJS", "ExpressJS", "Typescript"];
+const rightLists = ["NextJS", "MongoDB", "Prisma"];
 
 export const BentoGrid = ({
   className,
@@ -76,6 +76,7 @@ export const BentoGridItem = ({
   imgClassName,
   titleClassName,
   spareImg,
+  lottieData,
 }: {
   className?: string;
   id: number;
@@ -85,10 +86,8 @@ export const BentoGridItem = ({
   imgClassName?: string;
   titleClassName?: string;
   spareImg?: string;
+  lottieData?: any;
 }) => {
-  const leftLists = ["ReactJS", "ExpressJS", "Typescript"];
-  const rightLists = ["NextJS", "MongoDB", "Prisma"];
-
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
@@ -119,6 +118,9 @@ export const BentoGridItem = ({
               width={1920}
               height={1080}
             />
+          )}
+          {lottieData && (
+            <LottieAnimation animationData={lottieData} />
           )}
         </div>
         <div className={`absolute right-0 -bottom-5 ${id === 5 && "w-full opacity-80"}`}>
